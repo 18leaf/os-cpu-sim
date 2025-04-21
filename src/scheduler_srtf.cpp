@@ -8,18 +8,31 @@ struct SRTF_Scheduler : Scheduler {
 
    void add_to_ready(PCB* p) override
    {
-      // TODO insert p into q
+      q.push_back(p);
    }
 
    PCB* select_next(uint64_t /*current_time*/) override
    {
-      // TODO find PCB with smallest rem_t remove and return it
-      return nullptr;
+      if (q.empty())
+      {
+         return nullptr;
+      }
+
+      // find process with smallest remaining time
+      auto it = std::min_element(
+         q.begin(), q.end(),
+         [](PCB* a, PCB* b)
+         {
+            return a->rem_t < b->rem_t;
+         });
+
+      PCB* p = *it;
+      q.erase(it);
+      return p;   
    }
 
-   const char* name() const override
+   const char* name() override
    {
       return "SRTF";
    }
-
 };

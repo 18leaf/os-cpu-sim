@@ -5,11 +5,13 @@
    return a vectory<PCB> for simulating
 */
 #include "../include/workload.h"
+#include "../include/pcb.h"
 #include <fstream>      // std::ifstream
 #include <sstream>      // std::stringstream
 #include <iostream>     // std::cerr
 #include <algorithm>    // std::sort
 #include <limits>       // std::numeric_limits
+#include <cstdint>
 
 
 std::vector<PCB> load_workload(const std::string& path)
@@ -77,8 +79,12 @@ std::vector<PCB> load_workload(const std::string& path)
       catch (...) { continue; }
    }
    // sort by arrival time
-   std::sort(jobs.begin(), jobs.end()),
-      [](const PCB &a, const PCB &b){ return a.arr_t < b.arr_t; });
-   
+   std::sort(jobs.begin(), jobs.end(),
+   [](const PCB &a, const PCB &b)
+   {
+      return a.arr_t < b.arr_t;
+   }
+   );
+
    return jobs;
 };

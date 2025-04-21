@@ -17,6 +17,6 @@ struct Metrics {
 
    // add line for metrics to csv
    void export_csv(std::ostream& os, const char* scheduler_name);
-}
+};
 
 #endif // METRICS_H

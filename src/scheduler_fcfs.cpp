@@ -1,10 +1,10 @@
-#include "scheduler.h"
+#include "../include/scheduler.h"
 #include <deque>
-
+#include "../include/pcb.h"
 
 // FIRST COME FIRST SERVE
 struct FCFS_Scheduler : Scheduler {
-   std::dequeue<PCB*> q;
+   std::deque<PCB*> q;
 
    void add_to_ready(PCB *p) override
    {
@@ -23,8 +23,8 @@ struct FCFS_Scheduler : Scheduler {
       return p;
    }
 
-   const char* name() const override
+   const char* name() override
    {
-      return "FCFS"
+      return "FCFS";
    }
-}
+};

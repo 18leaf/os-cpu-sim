@@ -3,9 +3,9 @@
 
 #include <vector>
 #include <string>
+#include "pcb.h"
 
-
-std::vector load_workload(const std::string& path);
+std::vector<PCB> load_workload(const std::string& path);
 
 
 #endif // WORKLOAD_H
