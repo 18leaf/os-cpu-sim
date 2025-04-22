@@ -50,7 +50,15 @@ void run_simulation(Scheduler& sched,
       while (next_idx < procs.size() &&
              procs[next_idx].arr_t <= current_time)
       {
-         sched.add_to_ready(&procs[next_idx]);
+         // mlfq scheduling
+         if (auto *m = dynamic_cast<MLFQ_Scheduler*>(&sched))
+         {
+            m->enqueue(&procs[next_idx], current_time);
+         }
+         else
+         {
+            sched.add_to_ready(&procs[next_idx]);
+         }
          ++next_idx;
       }
 
@@ -74,10 +82,10 @@ void run_simulation(Scheduler& sched,
 
       // determine run time
       uint64_t run_length = p->rem_t;
-      if (auto *mlfq = dynamic_cast<MLFQ_Scheduler*>(&sched))
+      if (auto *m = dynamic_cast<MLFQ_Scheduler*>(&sched))
       {
          // use mlfq specific time slic
-         run_length = mlfq->time_slice_for(p);
+         run_length = m->time_slice_for(p);
       }
 
       // simulate run process
@@ -92,7 +100,14 @@ void run_simulation(Scheduler& sched,
       }
       else
       {
-         sched.add_to_ready(p);
+         if (auto *m = dynamic_cast<MLFQ_Scheduler*>(&sched))
+         {
+            m->enqueue(p, current_time);
+         }
+         else
+         {
+            sched.add_to_ready(p);
+         }
       } 
    }
 

@@ -12,6 +12,7 @@ struct PCB {
    int         priority;   // lower num == higher priority
    uint64_t    start_t;    // tick when task was first scheduled
    uint64_t    exit_t;     // tick when finished
+   uint64_t    last_enq_t; // last enqueue time for mlfq algorithm change
 };
 
 

@@ -67,9 +67,10 @@ std::vector<PCB> load_workload(const std::string& path)
             p.priority = 0;   
          }
 
-         p.rem_t = p.burst_t;
-         p.start_t = std::numeric_limits<uint64_t>::max();  // start and exit ticks to max value for now (not complete)
-         p.exit_t = std::numeric_limits<uint64_t>::max();
+         p.rem_t      = p.burst_t;
+         p.start_t    = std::numeric_limits<uint64_t>::max();  // start and exit ticks to max value for now (not complete)
+         p.exit_t     = std::numeric_limits<uint64_t>::max();
+         p.last_enq_t = p.arr_t; // init enqueue time = arival
       
          // append to jobs
          jobs.push_back(p);
