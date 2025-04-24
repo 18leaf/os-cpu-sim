@@ -6,8 +6,8 @@
 // MULTI‑LEVEL FEEDBACK QUEUE with simple aging
 struct MLFQ_Scheduler : Scheduler
 {
-   static constexpr uint64_t AGING_THRESHOLD = 17; //100;  // ticks to promote
-   static constexpr uint64_t BOOST_INTERVAL  = 53;  // ticks between globabl boosts
+   static constexpr uint64_t AGING_THRESHOLD = 20; //100;  // ticks to promote
+   static constexpr uint64_t BOOST_INTERVAL  = 80;  // ticks between globabl boosts
 
    // three priority levels
    std::vector<std::deque<PCB*>> queues_{ std::deque<PCB*>{},
@@ -15,7 +15,7 @@ struct MLFQ_Scheduler : Scheduler
                                           std::deque<PCB*>{} };
 
    // time slices per level
-   const std::vector<uint64_t> quantums_{ 2, 6, 27 };
+   const std::vector<uint64_t> quantums_{ 3, 23, 65 };
 
    // enqueue with timestamp
    void enqueue(PCB* p, uint64_t current_time)
