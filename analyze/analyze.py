@@ -3,7 +3,7 @@ import plotly.express as px
 
 def main():
     # load data
-    df = pd.read_csv('results_detailed.csv')
+    df = pd.read_csv('../results_detailed.csv')
 
     # make sure numeric
     num_cols = ['arrival','burst','start','exit','waiting','turnaround','response']
@@ -19,7 +19,7 @@ def main():
         x='waiting',
         color='scheduler',
         barmode='overlay',
-        nbins=25,
+        nbins=50,
         title='Waiting Time Distribution by Scheduler',
         labels={'waiting': 'Waiting Time (ticks)'},
         template='plotly_dark'
