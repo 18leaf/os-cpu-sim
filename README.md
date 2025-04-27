@@ -22,6 +22,9 @@ Workloads are defined in CSV, and the simulator produces both summary and per-jo
   - CPU utilization  
   - Throughput  
 - Python/Plotly visualization script for quick graphical analysis
+- 
+ ![Arrival vs. Exit Scatter Plot](https://github.com/18leaf/os-cpu-sim/blob/main/scatterplot.png)
+ 
 
 ---
 
